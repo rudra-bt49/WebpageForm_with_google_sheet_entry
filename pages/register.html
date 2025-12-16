@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <form action="login.html" target="_self">
+    <div class="register-container">
+        <fieldset>
+        <legend>Fill the registration form:</legend>
+        <label for="fname">First Name : </label>
+        <input type="text" id="fname" class="fname" placeholder="Enter your First Name"
+            required>
+
+        <label for="lname">Last Name : </label>
+        <input type="text" id="lname" class="lname"placeholder="Enter your Last Name"
+            required>
+
+        <label for="username">username : </label>
+        <input type="text" id="username" class="username" placeholder="Enter your username"
+            required>
+
+        <label for="password">password : </label>
+        <input type="password" id="password" class="password" placeholder="Enter your password"
+            required>
+
+        <label for="confirm-password">confirm-password : </label>
+        <input type="password" id="confirm-password" class="confirm-password" placeholder="Enter your password again"
+            required>
+
+        <label for="DOB">Date of birth : </label>
+        <input type="date" id="date" class="date"  placeholder="Enter your DOB"
+            required>
+
+        <label for="gender">Gender : </label>
+        <select id="gender" class="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+
+        <button type="submit" value="submit">Submit</button>
+        <button type="reset" value="reset">Clear</button>
+        
+        </fieldset>
+    </div>
+    </form>
+</body>
+</html>
