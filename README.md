@@ -13,3 +13,4 @@ use of localSTorage to store some details.
 
 # Login Form
 created login form and css
+added login credentials check in login.js and on successful login, redirect to home page

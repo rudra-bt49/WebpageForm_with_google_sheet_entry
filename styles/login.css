@@ -122,3 +122,10 @@ button:hover {
     max-width: 520px;
   }
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 10px;
+}
