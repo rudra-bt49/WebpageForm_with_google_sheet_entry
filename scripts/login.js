@@ -1,37 +1,33 @@
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
 const form = document.getElementById("login-form");
 
-
-let usernameValid = false;
-let passwordValid = false;
-
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const enteredUsername = username.value;
-    const enteredPassword = password.value;
+  const enteredUsername = usernameInput.value;
+  const enteredPassword = passwordInput.value;
 
-    if(!enteredUsername || enteredUsername !== localStorage.getItem("username")){
-        document.getElementById("usernameError").textContent = 
-        "username does not exist";
-        usernameValid = false;
-    }
-    else {
-        usernameValid = true;
-    }
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if(!enteredPassword || enteredPassword !== localStorage.getItem("password")){
-        document.getElementById("passwordError").textContent = 
-        "password is incorrect";
-        passwordValid = false;
-    }
-    else {
-        passwordValid = true;
-    }
+  const matchedUser = users.find(
+    (u) =>
+      u.username === enteredUsername &&
+      u.password === enteredPassword
+  );
 
-    if(usernameValid && passwordValid){
-        alert("😊 Login Successfull");
-        window.location.href = "home.html";
-    }
+  if (!matchedUser) {
+    document.getElementById("usernameError").textContent =
+      "Invalid username or password";
+    document.getElementById("passwordError").textContent =
+      "Invalid username or password";
+    return;
+  }
+
+  // 🔑 LOGIN STATE (ADDED)
+  localStorage.setItem("isLoggedIn", "true");
+  localStorage.setItem("loggedInUser", matchedUser.username);
+
+  alert("😊 Login Successful!");
+  window.location.href = "home.html";
 });

@@ -7,12 +7,17 @@ const gender = document.getElementById("gender");
 const signupBtn = document.getElementById("signupBtn");
 const form = document.getElementById("register-form");
 
-// Regular Expressions Decalred
+/* =====================
+   REGEX
+===================== */
 const emailRegex = /^[a-zA-Z0-9._%+-]+@(bitontree\.com|ddu\.com)$/;
 const usernameRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-// variables to check validations
+/* =====================
+   VALIDATION FLAGS
+===================== */
 let isEmailValid = false;
 let isUsernamevalid = false;
 let isPasswordValid = false;
@@ -20,139 +25,146 @@ let isConfirmPasswordValid = false;
 let isDobValid = false;
 let isGenderValid = false;
 
-// email validation
+/* =====================
+   FIELD VALIDATIONS
+===================== */
 email.addEventListener("input", () => {
-    if(!emailRegex.test(email.value)){
-        document.getElementById("emailError").textContent = 
-            "Only Business Emails allowed (Bitontree.com and DDU.com)";
-        isEmailValid = false;
-    }
-    else {
-        document.getElementById("emailError").textContent = "";
-        isEmailValid = true;
-    }
-    toggleButton();
+  if (!emailRegex.test(email.value)) {
+    emailError.textContent =
+      "Only Business Emails allowed (bitontree.com / ddu.com)";
+    isEmailValid = false;
+  } else {
+    emailError.textContent = "";
+    isEmailValid = true;
+  }
+  toggleButton();
 });
 
-// username validation
 username.addEventListener("input", () => {
-    if(!usernameRegex.test(username.value)){
-        document.getElementById("usernameError").textContent = 
-            "Min 6 chars, must contain 1 letter & 1 digit (no special chars)";
-        isUsernamevalid = false;
-    }
-    else {
-        document.getElementById("usernameError").textContent = "";
-        isUsernamevalid = true;
-    }
-    toggleButton();
+  if (!usernameRegex.test(username.value)) {
+    usernameError.textContent =
+      "Min 6 chars, must contain 1 letter & 1 digit";
+    isUsernamevalid = false;
+  } else {
+    usernameError.textContent = "";
+    isUsernamevalid = true;
+  }
+  toggleButton();
 });
 
-// password validation
 password.addEventListener("input", () => {
-    if(!passwordRegex.test(password.value)){
-        document.getElementById("passwordError").textContent = 
-            "Min 8 chars with uppercase, lowercase, digit & special character";
-        isPasswordValid = false;
-    }
-    else {
-        document.getElementById("passwordError").textContent = "";
-        isPasswordValid = true;
-    }
-    toggleButton();
+  if (!passwordRegex.test(password.value)) {
+    passwordError.textContent =
+      "Min 8 chars with uppercase, lowercase, digit & special char";
+    isPasswordValid = false;
+  } else {
+    passwordError.textContent = "";
+    isPasswordValid = true;
+  }
+  toggleButton();
 });
 
-// confirm-password validation
 confirmPassword.addEventListener("input", () => {
-    if(confirmPassword.value !== password.value || confirmPassword.value == "") {
-        document.getElementById("confirmPasswordError").textContent = "Both Password must match!"
-        isConfirmPasswordValid = false;
-    }
-    else {
-        document.getElementById("confirmPasswordError").textContent = "";
-        isConfirmPasswordValid = true;
-    }
-    toggleButton();
+  if (confirmPassword.value !== password.value) {
+    confirmPasswordError.textContent = "Passwords must match";
+    isConfirmPasswordValid = false;
+  } else {
+    confirmPasswordError.textContent = "";
+    isConfirmPasswordValid = true;
+  }
+  toggleButton();
 });
 
-// date validation
 dob.addEventListener("input", () => {
-    const year = new Date(dob.value).getFullYear();
+  const year = new Date(dob.value).getFullYear();
+  if (year < 1980 || year > 2005) {
+    dobError.textContent = "DOB must be between 1980 and 2005";
+    isDobValid = false;
+  } else {
+    dobError.textContent = "";
+    isDobValid = true;
+  }
+  toggleButton();
+});
 
-    if(year < 1980 || year > 2005) {
-        document.getElementById("dobError").textContent = 
-            "DOB must between 1980 and 2005!";
-            isDobValid = false;
-    }
-    else {
-        document.getElementById("dobError").textContent = "";
-        isDobValid = true;
-    }
-    toggleButton();
-})
-
-// gender validation
 gender.addEventListener("change", () => {
-    if (gender.value === "") {
-        document.getElementById("genderError").textContent = 
-            "Please select gender!";
-            isGenderValid = false;
-    } else {
-        document.getElementById("genderError").textContent = "";
-        isGenderValid = true;
-    }
-    toggleButton();
+  if (!gender.value) {
+    genderError.textContent = "Select gender";
+    isGenderValid = false;
+  } else {
+    genderError.textContent = "";
+    isGenderValid = true;
+  }
+  toggleButton();
 });
 
 function toggleButton() {
-    signupBtn.disabled = !(
-        isEmailValid &&
-        isUsernamevalid &&
-        isPasswordValid && 
-        isConfirmPasswordValid &&
-        isDobValid &&
-        isGenderValid 
-    );
+  signupBtn.disabled = !(
+    isEmailValid &&
+    isUsernamevalid &&
+    isPasswordValid &&
+    isConfirmPasswordValid &&
+    isDobValid &&
+    isGenderValid
+  );
 }
 
+/* =====================
+   FORM SUBMIT
+===================== */
 form.addEventListener("submit", (e) => {
-    // preventing page load on form submit
-    e.preventDefault();
+  e.preventDefault();
 
-    // setting in localStorage
-    localStorage.setItem("email", email.value);
-    localStorage.setItem("username", username.value);
-    localStorage.setItem("password", password.value);
+  /* 🔐 MULTI-USER STORAGE */
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    sendToGoogleSheet();
+  /* check duplicate locally */
+  const exists = users.some(
+    (u) =>
+      u.username === username.value || u.email === email.value
+  );
+
+  if (exists) {
+    alert("❌ Username or Email already exists (local)");
+    return;
+  }
+
+  users.push({
+    email: email.value,
+    username: username.value,
+    password: password.value
+  });
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  sendToGoogleSheet();
 });
 
-// send data to google-sheet
+/* =====================
+   GOOGLE SHEET
+===================== */
 function sendToGoogleSheet() {
   const formData = new FormData();
-
   formData.append("email", email.value);
   formData.append("username", username.value);
   formData.append("dob", dob.value);
   formData.append("gender", gender.value);
 
-  fetch("https://script.google.com/macros/s/AKfycbw1B_bP3jFCzEHv_Lipi-83eydybdHhRMAXJ3h2e22KS6Cs-lr-ggpjqRqCP2CGXuOzqg/exec", {
-    method: "POST",
-    body: formData
-  })
-    .then(res => res.json())
-    .then(data => {
+  fetch(
+    "https://script.google.com/macros/s/AKfycbw1B_bP3jFCzEHv_Lipi-83eydybdHhRMAXJ3h2e22KS6Cs-lr-ggpjqRqCP2CGXuOzqg/exec",
+    {
+      method: "POST",
+      body: formData
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
       if (!data.success) {
         alert(data.message);
         return;
       }
-
       alert("😊 Registration Successful!");
       window.location.href = "login.html";
     })
-    .catch(err => {
-      console.error(err);
-      alert("😒 Error submitting form");
-    });
+    .catch(() => alert("😒 Error submitting form"));
 }
-
