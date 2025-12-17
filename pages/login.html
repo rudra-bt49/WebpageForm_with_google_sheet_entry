@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+<body>
+    <form id="login-form" action="home.html" target="_self" method="post">
+    <div class="login-container">
+        <fieldset>
+        <legend>Fill the login form:</legend>
+
+        <label for="username">username : </label>
+        <input type="text" id="username" class="username" placeholder="Enter your username" required>
+        <span class="error" id="usernameError"></span>
+
+        <label for="password">password : </label>
+        <input type="password" id="password" class="password" placeholder="Enter your password" required>
+        <span class="error" id="passwordError"></span>
+
+        <button type="submit" value="submit">SignIn</button>
+        <button type="reset" value="reset">Clear</button>
+
+        <!-- Register link -->
+        <p style="margin-top: 15px;">
+            Don’t have an account?
+            <a href="register.html">Register</a>
+        </p>
+
+        </fieldset>
+    </div>
+    </form>
+
+    <script src="../scripts/login.js"></script>
+</body>
+</html>
