@@ -34,10 +34,3 @@ form.addEventListener("submit", (e) => {
   window.location.href = "home.html";
 });
 
-// function showLoader() {
-//   document.getElementById("loader").style.display = "flex";
-// }
-
-// function hideLoader() {
-//   document.getElementById("loader").style.display = "none";
-// }

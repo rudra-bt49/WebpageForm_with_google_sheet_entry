@@ -10,11 +10,9 @@ const form = document.getElementById("register-form");
 /* =====================
    REGEX
 ===================== */
-const emailRegex = /^[a-zA-Z0-9._%+-]+@(bitontree\.com|ddu\.com)$/;
 const usernameRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
 
 let isEmailValid = false;
 let isUsernamevalid = false;
@@ -23,9 +21,8 @@ let isConfirmPasswordValid = false;
 let isDobValid = false;
 let isGenderValid = false;
 
-
 email.addEventListener("input", () => {
-  if (!emailRegex.test(email.value)) {
+  if (!validateBusinessEmail(email.value)) {
     emailError.textContent =
       "Only Business Emails allowed (bitontree.com / ddu.com)";
     isEmailValid = false;
@@ -105,16 +102,14 @@ function toggleButton() {
   );
 }
 
-
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
   showLoader();
 
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const exists = users.some(
-    (u) =>
-      u.username === username.value || u.email === email.value
+    (u) => u.username === username.value || u.email === email.value
   );
 
   if (exists) {
@@ -131,44 +126,37 @@ form.addEventListener("submit", (e) => {
 
   localStorage.setItem("users", JSON.stringify(users));
 
-  sendToGoogleSheet();
+  await sendToGoogleSheet();
 });
 
+async function sendToGoogleSheet() {
+  try {
+    const formData = new FormData();
+    formData.append("email", email.value);
+    formData.append("username", username.value);
+    formData.append("dob", dob.value);
+    formData.append("gender", gender.value);
 
-function sendToGoogleSheet() {
-  const formData = new FormData();
-  formData.append("email", email.value);
-  formData.append("username", username.value);
-  formData.append("dob", dob.value);
-  formData.append("gender", gender.value);
-
-  fetch(
-    "https://script.google.com/macros/s/AKfycbw1B_bP3jFCzEHv_Lipi-83eydybdHhRMAXJ3h2e22KS6Cs-lr-ggpjqRqCP2CGXuOzqg/exec",
-    {
+    const response = await fetch(CONFIG.REGISTER_API_URL, {
       method: "POST",
       body: formData
-    }
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      if (!data.success) {
-        alert(data.message);
-        return;
-      }
-      // alert("😊 Registration Successful!");
-      window.location.href = "login.html";
-    })
-    .catch(() => { 
-      hideLoader();
-      alert("😒 Error submitting form");
     });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+
+    if (!data.success) {
+      alert(data.message);
+      return;
+    }
+
+    window.location.href = "login.html";
+  } catch (error) {
+    alert("😒 Error submitting form");
+  } finally {
+    hideLoader();
+  }
 }
-
-// function showLoader() {
-//   document.getElementById("loader").style.display = "flex";
-// }
-
-// function hideLoader() {
-//   document.getElementById("loader").style.display = "none";
-// }
-

@@ -1,5 +1,6 @@
 checkAuthorizeUser();
 
+const isLoggedIn = localStorage.getItem("isLoggedIn");
 const authLink = document.getElementById("authLink");
 
 if (isLoggedIn === "true") {

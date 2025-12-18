@@ -10,88 +10,89 @@ let isEmailValid = false;
 let isNameValid = false;
 let isMessageValid = false;
 
-// Email validation (must exist in registered users)
 email.addEventListener("input", () => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const exists = users.some(user => user.email === email.value);
-
-    if (!exists) {
-        document.getElementById("emailError").textContent =
-            "This email is not registered!";
-        isEmailValid = false;
-    } else {
-        document.getElementById("emailError").textContent = "";
-        isEmailValid = true;
-    }
+  if (!validateBusinessEmail(email.value)) {
+    document.getElementById("emailError").textContent =
+      "Only Business Emails allowed (bitontree.com / ddu.com)";
+    isEmailValid = false;
     toggleButton();
+    return;
+  }
+
+  if (!isEmailRegistered(email.value)) {
+    document.getElementById("emailError").textContent =
+      "This email is not registered!";
+    isEmailValid = false;
+  } else {
+    document.getElementById("emailError").textContent = "";
+    isEmailValid = true;
+  }
+
+  toggleButton();
 });
 
-// Name validation
 nameInput.addEventListener("input", () => {
-    if (nameInput.value.trim().length < 2) {
-        document.getElementById("nameError").textContent =
-            "Name must be at least 2 characters";
-        isNameValid = false;
-    } else {
-        document.getElementById("nameError").textContent = "";
-        isNameValid = true;
-    }
-    toggleButton();
+  if (nameInput.value.trim().length < 2) {
+    document.getElementById("nameError").textContent =
+      "Name must be at least 2 characters";
+    isNameValid = false;
+  } else {
+    document.getElementById("nameError").textContent = "";
+    isNameValid = true;
+  }
+  toggleButton();
 });
 
-// Message validation
 messageInput.addEventListener("input", () => {
-    if (messageInput.value.trim().length < 5) {
-        document.getElementById("messageError").textContent =
-            "Message must be at least 5 characters";
-        isMessageValid = false;
-    } else {
-        document.getElementById("messageError").textContent = "";
-        isMessageValid = true;
-    }
-    toggleButton();
+  if (messageInput.value.trim().length < 5) {
+    document.getElementById("messageError").textContent =
+      "Message must be at least 5 characters";
+    isMessageValid = false;
+  } else {
+    document.getElementById("messageError").textContent = "";
+    isMessageValid = true;
+  }
+  toggleButton();
 });
 
 function toggleButton() {
-    contactBtn.disabled = !(isEmailValid && isNameValid && isMessageValid);
+  contactBtn.disabled = !(isEmailValid && isNameValid && isMessageValid);
 }
 
-// Submit form
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    showLoader();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  showLoader();
 
+  await submitContactForm();
+});
+
+async function submitContactForm() {
+  try {
     const formData = new FormData();
     formData.append("type", "contact");
     formData.append("email", email.value);
     formData.append("name", nameInput.value);
     formData.append("message", messageInput.value);
 
-    fetch("https://script.google.com/macros/s/AKfycbwjSF_1rkNw4Yh-NV3WRKEMlvregzM31MVhZi2_pqKq9zwIhk9Tds1bdCQAkTrutZAZYQ/exec", {
-        method: "POST",
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (!data.success) {
-            hideLoader();
-            alert("Error submitting contact form");
-            return;
-        }
-        // alert("😊 Contact form submitted successfully!");
-        window.location.href = "home.html";
-    })
-    .catch(() => {
-        hideLoader();
-        alert("😒 Submission failed");
+    const response = await fetch(CONFIG.CONTACT_API_URL, {
+      method: "POST",
+      body: formData
     });
-});
 
-// function showLoader() {
-//   document.getElementById("loader").style.display = "flex";
-// }
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-// function hideLoader() {
-//   document.getElementById("loader").style.display = "none";
-// }
+    const data = await response.json();
 
+    if (!data.success) {
+        alert(data.message || "Error submitting contact form");
+        return;
+    }
+    window.location.href = "home.html";
+  } catch (error) {
+    alert("😒 Submission failed");
+  } finally {
+    hideLoader();
+  }
+}
