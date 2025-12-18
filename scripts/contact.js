@@ -1,3 +1,5 @@
+checkAuthorizeUser();
+
 const form = document.getElementById("contact-form");
 const email = document.getElementById("email");
 const nameInput = document.getElementById("name");
@@ -57,6 +59,7 @@ function toggleButton() {
 // Submit form
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    showLoader();
 
     const formData = new FormData();
     formData.append("type", "contact");
@@ -71,11 +74,24 @@ form.addEventListener("submit", (e) => {
     .then(res => res.json())
     .then(data => {
         if (!data.success) {
+            hideLoader();
             alert("Error submitting contact form");
             return;
         }
-        alert("😊 Contact form submitted successfully!");
+        // alert("😊 Contact form submitted successfully!");
         window.location.href = "home.html";
     })
-    .catch(() => alert("😒 Submission failed"));
+    .catch(() => {
+        hideLoader();
+        alert("😒 Submission failed");
+    });
 });
+
+// function showLoader() {
+//   document.getElementById("loader").style.display = "flex";
+// }
+
+// function hideLoader() {
+//   document.getElementById("loader").style.display = "none";
+// }
+

@@ -15,9 +15,7 @@ const usernameRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-/* =====================
-   VALIDATION FLAGS
-===================== */
+
 let isEmailValid = false;
 let isUsernamevalid = false;
 let isPasswordValid = false;
@@ -25,9 +23,7 @@ let isConfirmPasswordValid = false;
 let isDobValid = false;
 let isGenderValid = false;
 
-/* =====================
-   FIELD VALIDATIONS
-===================== */
+
 email.addEventListener("input", () => {
   if (!emailRegex.test(email.value)) {
     emailError.textContent =
@@ -109,22 +105,20 @@ function toggleButton() {
   );
 }
 
-/* =====================
-   FORM SUBMIT
-===================== */
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  showLoader();
 
-  /* 🔐 MULTI-USER STORAGE */
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
-  /* check duplicate locally */
   const exists = users.some(
     (u) =>
       u.username === username.value || u.email === email.value
   );
 
   if (exists) {
+    hideLoader();
     alert("❌ Username or Email already exists (local)");
     return;
   }
@@ -140,9 +134,7 @@ form.addEventListener("submit", (e) => {
   sendToGoogleSheet();
 });
 
-/* =====================
-   GOOGLE SHEET
-===================== */
+
 function sendToGoogleSheet() {
   const formData = new FormData();
   formData.append("email", email.value);
@@ -163,8 +155,20 @@ function sendToGoogleSheet() {
         alert(data.message);
         return;
       }
-      alert("😊 Registration Successful!");
+      // alert("😊 Registration Successful!");
       window.location.href = "login.html";
     })
-    .catch(() => alert("😒 Error submitting form"));
+    .catch(() => { 
+      hideLoader();
+      alert("😒 Error submitting form");
+    });
 }
+
+// function showLoader() {
+//   document.getElementById("loader").style.display = "flex";
+// }
+
+// function hideLoader() {
+//   document.getElementById("loader").style.display = "none";
+// }
+

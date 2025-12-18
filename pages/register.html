@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../styles/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- Global form CSS -->
+  <link rel="stylesheet" href="../styles/form.css">
 </head>
+
+<!-- Loader -->
+<div class="loader-overlay" id="loader">
+  <div class="loader"></div>
+</div>
+
 <body>
-    <!-- Registration form -->
-    <form id="register-form" target="_self" method="post" novalidate>
-    <div class="register-container">
-        <fieldset>
-        <legend>Fill the registration form:</legend>
-        
-        <label for="email">Business mail : </label>
-        <input type="email" id="email" class="email" placeholder="Enter your Business mail" required>
-        <span class="error" id="emailError"></span>
 
-        <label for="username">username : </label>
-        <input type="text" id="username" class="username" placeholder="Enter your username" required>
-        <span class="error" id="usernameError"></span>
+<form id="register-form" target="_self" method="post" novalidate>
+  <div class="form-container">
+    <fieldset>
+      <legend>Fill the registration form:</legend>
 
-        <label for="password">password : </label>
-        <input type="password" id="password" class="password" placeholder="Enter your password" required>
-        <span class="error" id="passwordError"></span>
+      <label for="email">Business mail :</label>
+      <input type="email" id="email" placeholder="Enter your Business mail" required>
+      <span class="error" id="emailError"></span>
 
-        <label for="confirm-password">confirm-password : </label>
-        <input type="password" id="confirm-password" class="confirm-password" placeholder="Enter your password again" required>
-        <span class="error" id="confirmPasswordError"></span>
-        
-        <label for="DOB">Date of birth : </label>
-        <input type="date" id="date" class="date" placeholder="Enter your DOB" required>
-        <span class="error" id="dobError"></span>
+      <label for="username">username :</label>
+      <input type="text" id="username" placeholder="Enter your username" required>
+      <span class="error" id="usernameError"></span>
 
-        <label for="gender">Gender : </label>
-        <select id="gender" class="gender">
-            <option value="">Select</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-        </select>
-        <span class="error" id="genderError"></span>
+      <label for="password">password :</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <span class="error" id="passwordError"></span>
 
-        <button type="submit" id="signupBtn" disabled>SignUp</button>
-        <button type="reset" value="reset">Clear</button>
+      <label for="confirm-password">confirm-password :</label>
+      <input type="password" id="confirm-password" placeholder="Enter your password again" required>
+      <span class="error" id="confirmPasswordError"></span>
 
-        <!-- Login link -->
-        <p style="margin-top: 15px;">
-            Already have an account?
-            <a href="login.html">Login</a>
-        </p>
+      <label for="DOB">Date of birth :</label>
+      <input type="date" id="date" required>
+      <span class="error" id="dobError"></span>
 
-        </fieldset>
-    </div>
-    </form>
+      <label for="gender">Gender :</label>
+      <select id="gender">
+        <option value="">Select</option>
+        <option value="male">male</option>
+        <option value="female">female</option>
+      </select>
+      <span class="error" id="genderError"></span>
 
-    <!-- linking with JS -->
-    <script src="../scripts/script.js"></script>
+      <button type="submit" id="signupBtn" disabled>SignUp</button>
+      <button type="reset">Clear</button>
+
+      <p style="margin-top: 15px;">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </p>
+    </fieldset>
+  </div>
+</form>
+
+<script src="../scripts/loader.js"></script>
+<script src="../scripts/script.js"></script>
 </body>
 </html>

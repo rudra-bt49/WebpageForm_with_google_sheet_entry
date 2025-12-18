@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
 
-    <link rel="stylesheet" href="../styles/login.css">
+  <link rel="stylesheet" href="../styles/form.css">
 </head>
+
+<!-- Loader -->
+<div class="loader-overlay" id="loader">
+  <div class="loader"></div>
+</div>
+
 <body>
-    <form id="login-form" novalidate>
-    <div class="login-container">
-        <fieldset>
-        <legend>Fill the login form:</legend>
 
-        <label for="username">username : </label>
-        <input type="text" id="username" class="username" placeholder="Enter your username" required>
-        <span class="error" id="usernameError"></span>
+<form id="login-form" novalidate>
+  <div class="form-container">
+    <fieldset>
+      <legend>Fill the login form:</legend>
 
-        <label for="password">password : </label>
-        <input type="password" id="password" class="password" placeholder="Enter your password" required>
-        <span class="error" id="passwordError"></span>
+      <label for="username">username :</label>
+      <input type="text" id="username" placeholder="Enter your username" required>
+      <span class="error" id="usernameError"></span>
 
-        <button type="submit" value="submit">SignIn</button>
-        <button type="reset" value="reset">Clear</button>
+      <label for="password">password :</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <span class="error" id="passwordError"></span>
 
-        <!-- Register link -->
-        <p style="margin-top: 15px;">
-            Don’t have an account?
-            <a href="register.html">Register</a>
-        </p>
+      <button type="submit">SignIn</button>
+      <button type="reset">Clear</button>
 
-        </fieldset>
-    </div>
-    </form>
+      <p style="margin-top: 15px;">
+        Don’t have an account?
+        <a href="register.html">Register</a>
+      </p>
+    </fieldset>
+  </div>
+</form>
 
-    <script src="../scripts/login.js"></script>
+<script src="../scripts/loader.js"></script>
+<script src="../scripts/login.js"></script>
 </body>
 </html>

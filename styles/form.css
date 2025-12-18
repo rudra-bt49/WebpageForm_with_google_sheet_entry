@@ -1,4 +1,4 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,15 +10,13 @@ body {
   line-height: 1.4;
 }
 
-
-.contact-container {
+.form-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
 }
-
 
 fieldset {
   width: 100%;
@@ -35,14 +33,14 @@ legend {
   padding: 0 10px;
 }
 
-
 label {
   display: block;
   margin-top: 14px;
   font-weight: 600;
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 10px;
   margin-top: 6px;
@@ -51,18 +49,19 @@ input {
   border-radius: 5px;
 }
 
-input:focus {
+input:focus,
+select:focus {
   outline: none;
   border-color: #007bff;
 }
 
 button {
-  padding: 8px 18px;        
+  padding: 8px 18px;
   font-size: 14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: auto;              
+  width: auto;
   margin-top: 16px;
 }
 
@@ -72,7 +71,7 @@ button[type="reset"] {
 }
 
 button[type="submit"] {
-  background-color: #97139e;
+  background-color: #66006b;
   color: #ffffff;
   margin-right: 10px;
 }
@@ -86,6 +85,51 @@ button:hover {
   opacity: 0.9;
 }
 
+.error {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* =======================
+   LOADER OVERLAY
+======================= */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Spinner */
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #66006b;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* responsive */
 @media (min-width: 600px) {
   fieldset {
     padding: 24px;
@@ -102,9 +146,3 @@ button:hover {
   }
 }
 
-.error {
-  color: red;
-  font-size: 12px;
-  display: block;
-  margin-bottom: 10px;
-} */

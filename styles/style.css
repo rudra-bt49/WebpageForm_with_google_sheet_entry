@@ -1,7 +1,4 @@
-/* =======================
-   RESET & BASE
-======================= */
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,9 +10,7 @@ body {
   line-height: 1.4;
 }
 
-/* =======================
-   CENTER CONTAINER
-======================= */
+
 .register-container {
   min-height: 100vh;
   display: flex;
@@ -24,9 +19,7 @@ body {
   padding: 15px;
 }
 
-/* =======================
-   FORM CARD
-======================= */
+
 fieldset {
   width: 100%;
   max-width: 450px;
@@ -42,9 +35,7 @@ legend {
   padding: 0 10px;
 }
 
-/* =======================
-   FORM ELEMENTS
-======================= */
+
 label {
   display: block;
   margin-top: 14px;
@@ -67,48 +58,36 @@ select:focus {
   border-color: #007bff;
 }
 
-/* =======================
-   BUTTONS (FIXED)
-======================= */
-
-/* Button wrapper behavior (no HTML change needed) */
 button {
-  padding: 8px 18px;        /* Fits text nicely */
+  padding: 8px 18px;        
   font-size: 14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: auto;              /* IMPORTANT */
-  margin-top: 16px;
+  width: auto;
+  margin-top: 16px;              
 }
 
-/* Keep buttons side by side */
 button[type="submit"],
 button[type="reset"] {
   display: inline-block;
 }
 
-/* Submit button */
 button[type="submit"] {
   background-color: #97139e;
   color: #ffffff;
   margin-right: 10px;
 }
 
-/* Reset button */
 button[type="reset"] {
   background-color: #6c757d;
   color: #ffffff;
 }
 
-/* Hover */
 button:hover {
   opacity: 0.9;
 }
 
-/* =======================
-   TABLET (≥ 600px)
-======================= */
 @media (min-width: 600px) {
   fieldset {
     padding: 24px;
@@ -119,20 +98,15 @@ button:hover {
   }
 }
 
-/* =======================
-   DESKTOP (≥ 900px)
-======================= */
 @media (min-width: 900px) {
   fieldset {
     max-width: 520px;
   }
 }
 
-/*error display*/
-
 .error {
   color: red;
   font-size: 12px;
   display: block;
   margin-bottom: 10px;
-}
+} */

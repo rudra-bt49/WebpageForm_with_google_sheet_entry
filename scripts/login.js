@@ -4,6 +4,7 @@ const form = document.getElementById("login-form");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  showLoader();
 
   const enteredUsername = usernameInput.value;
   const enteredPassword = passwordInput.value;
@@ -17,6 +18,7 @@ form.addEventListener("submit", (e) => {
   );
 
   if (!matchedUser) {
+    hideLoader();
     document.getElementById("usernameError").textContent =
       "Invalid username or password";
     document.getElementById("passwordError").textContent =
@@ -28,6 +30,14 @@ form.addEventListener("submit", (e) => {
   localStorage.setItem("isLoggedIn", "true");
   localStorage.setItem("loggedInUser", matchedUser.username);
 
-  alert("😊 Login Successful!");
+  // alert("😊 Login Successful!");
   window.location.href = "home.html";
 });
+
+// function showLoader() {
+//   document.getElementById("loader").style.display = "flex";
+// }
+
+// function hideLoader() {
+//   document.getElementById("loader").style.display = "none";
+// }

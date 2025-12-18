@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../styles/contact.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="../styles/form.css">
 </head>
+
+<!-- Loader -->
+<div class="loader-overlay" id="loader">
+  <div class="loader"></div>
+</div>
+
 <body>
-    <!-- Registration form -->
-    <form id="contact-form" target="_self" method="post" novalidate>
-    <div class="contact-container">
-        <fieldset>
-        <legend>Fill the contact form:</legend>
-        
-        <label for="email">Business mail : </label>
-        <input type="email" id="email" class="email" placeholder="Enter your Business mail" required>
-        <span class="error" id="emailError"></span>
 
-        <label for="name">name : </label>
-        <input type="text" id="name" class="name" placeholder="Enter your name" required>
-        <span class="error" id="nameError"></span>
+<form id="contact-form" target="_self" method="post" novalidate>
+  <div class="form-container">
+    <fieldset>
+      <legend>Fill the contact form:</legend>
 
-        <label for="message">message : </label>
-        <input type="text" id="message" class="message" placeholder="Enter your message" required>
-        <span class="error" id="messageError"></span>
+      <label for="email">Business mail :</label>
+      <input type="email" id="email" placeholder="Enter your Business mail" required>
+      <span class="error" id="emailError"></span>
 
-        <button type="submit" id="contactBtn" disabled>Submit</button>
-        <button type="reset" value="reset">Reset</button>
-        </fieldset>
-    </div>
-    </form>
+      <label for="name">name :</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <span class="error" id="nameError"></span>
 
-    <!-- linking with JS -->
-    <script src="../scripts/contact.js"></script>
+      <label for="message">message :</label>
+      <input type="text" id="message" placeholder="Enter your message" required>
+      <span class="error" id="messageError"></span>
+
+      <button type="submit" id="contactBtn" disabled>Submit</button>
+      <button type="reset">Reset</button>
+    </fieldset>
+  </div>
+</form>
+
+<script src="../scripts/loader.js"></script>
+<script src="../scripts/auth.js"></script>
+<script src="../scripts/contact.js"></script>
 </body>
 </html>
