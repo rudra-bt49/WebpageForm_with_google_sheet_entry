@@ -5,10 +5,12 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f2f2f2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-primary);
   line-height: 1.4;
-  background-image: url("../assets/login-background.png");
+  background-image: radial-gradient(circle at top right, rgba(107, 33, 168, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at bottom left, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+  transition: background var(--transition-speed) ease;
 }
 
 .form-container {
@@ -23,21 +25,30 @@ fieldset {
   width: 100%;
   max-width: 450px;
   padding: 20px;
-  border: 2px solid #66006b;
-  background: #ece3ec;
-  border-radius: 8px;
+  border: 2px solid var(--border-accent);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-speed) ease;
 }
 
 legend {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 0 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0 1rem;
+  color: var(--text-heading);
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 label {
   display: block;
   margin-top: 14px;
   font-weight: 600;
+  color: var(--text-secondary);
 }
 
 input,
@@ -46,24 +57,36 @@ select {
   padding: 10px;
   margin-top: 6px;
   font-size: 15px;
-  border: 1px solid #999;
-  border-radius: 5px;
+  border: 2px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition: all var(--transition-speed) ease;
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--input-border-focus);
+  background: var(--input-bg-focus);
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.2);
+}
+
+input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
 }
 
 button {
   padding: 8px 18px;
   font-size: 14px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   width: auto;
   margin-top: 16px;
+  transition: all var(--transition-speed) ease;
+  font-weight: 600;
 }
 
 button[type="submit"],
@@ -72,65 +95,92 @@ button[type="reset"] {
 }
 
 button[type="submit"] {
-  background-color: #66006b;
-  color: #ffffff;
+  background-color: var(--btn-primary-bg);
+  color: var(--text-primary);
   margin-right: 10px;
+  border: 2px solid var(--btn-primary-bg);
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 button[type="reset"] {
   background-color: #6c757d;
-  color: #ffffff;
+  color: var(--text-primary);
+  border: 2px solid #6c757d;
 }
 
-button:hover {
-  opacity: 0.9;
+button[type="reset"]:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
 }
 
 .error {
-  color: red;
+  color: #ef4444;
   font-size: 12px;
   display: block;
   margin-bottom: 10px;
+  margin-top: 0.5rem;
 }
 
-/* =======================
-   LOADER OVERLAY
-======================= */
 .loader-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--bg-overlay);
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  backdrop-filter: blur(5px);
 }
 
-/* Spinner */
 .loader {
-  border: 16px solid #f3f3f3;
+  border: 16px solid rgba(147, 51, 234, 0.3);
   border-radius: 50%;
-  border-top: 16px solid #66006b;
+  border-top: 16px solid var(--accent-purple);
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
 }
 
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* responsive */
+/* Auth link styles */
+p {
+  color: var(--text-secondary);
+}
+
+.auth-link {
+  color: var(--accent-purple);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-speed) ease;
+}
+
+.auth-link:hover {
+  color: var(--light-purple);
+  text-decoration: underline;
+}
+
 @media (min-width: 600px) {
   fieldset {
     padding: 24px;
@@ -139,6 +189,10 @@ button:hover {
   label {
     font-size: 15px;
   }
+
+  legend {
+    font-size: 1.75rem;
+  }
 }
 
 @media (min-width: 900px) {
@@ -146,4 +200,3 @@ button:hover {
     max-width: 520px;
   }
 }
-
