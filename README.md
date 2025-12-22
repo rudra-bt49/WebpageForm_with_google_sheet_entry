@@ -22,3 +22,24 @@ use of localSTorage to get some details.
 
 # Logout Button
 added Logout button functionality on home page.
+
+# home page
+- created home page layout
+- adde styling
+- load navbar and footer in home page
+- attach js file 
+
+# contact page
+- load load navbar and footer and fix styles
+- attach js file
+
+# about page
+- created about page
+- added styling
+- added different sections and apply styling
+- attach js file
+
+# theme toggle
+- dark light theme toggle button added
+- change styling in theme.css
+- set global colors and other global styling
