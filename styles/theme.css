@@ -1,0 +1,208 @@
+:root {
+  /* Primary Colors */
+  --primary-purple: #6b21a8;
+  --dark-purple: #4c1d95;
+  --darker-purple: #2e1065;
+  --accent-purple: #9333ea;
+  --light-purple: #a855f7;
+
+  /* Background Colors - Dark Theme (Default) */
+  --bg-primary: #0f0a1f;
+  --bg-secondary: #0a0512;
+  --bg-card: rgba(107, 33, 168, 0.08);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+
+  /* Text Colors - Dark Theme (Default) */
+  --text-primary: #f3e8ff;
+  --text-secondary: #e9d5ff;
+  --text-muted: #a1a1a1;
+  --text-heading: #f0f0f0;
+
+  /* Border & Accent Colors */
+  --border-color: #4c1d95;
+  --border-accent: #9333ea;
+
+  /* Gradients */
+  --gradient-header: linear-gradient(135deg, var(--darker-purple) 0%, var(--dark-purple) 100%);
+  --gradient-card: linear-gradient(135deg, rgba(107, 33, 168, 0.05) 0%, rgba(147, 51, 234, 0.08) 100%);
+  --gradient-text: linear-gradient(135deg, var(--light-purple) 0%, var(--accent-purple) 100%);
+
+  /* Input & Form Colors */
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-bg-focus: rgba(147, 51, 234, 0.1);
+  --input-border: var(--accent-purple);
+  --input-border-focus: #9333ea;
+
+  /* Button Colors */
+  --btn-primary-bg: var(--accent-purple);
+  --btn-primary-hover: var(--light-purple);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: var(--light-purple);
+
+  /* Shadow & Effects */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 20px rgba(147, 51, 234, 0.4);
+  --shadow-lg: 0 10px 40px rgba(107, 33, 168, 0.15);
+
+  /* Transition */
+  --transition-speed: 0.3s;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+/* Light Theme Variables */
+body.light-theme {
+  /* Background Colors - Light Theme */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(107, 33, 168, 0.03);
+  --bg-overlay: rgba(255, 255, 255, 0.9);
+
+  /* Text Colors - Light Theme */
+  --text-primary: #1a1a1a;
+  --text-secondary: #2d2d2d;
+  --text-muted: #6b7280;
+  --text-heading: #111111;
+
+  /* Border & Accent Colors - Light Theme */
+  --border-color: #e5e7eb;
+  --border-accent: var(--accent-purple);
+
+  /* Gradients - Light Theme */
+  --gradient-header: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+  --gradient-card: linear-gradient(135deg, rgba(107, 33, 168, 0.02) 0%, rgba(147, 51, 234, 0.04) 100%);
+
+  /* Input & Form Colors - Light Theme */
+  --input-bg: #ffffff;
+  --input-bg-focus: rgba(147, 51, 234, 0.05);
+  --input-border: #d1d5db;
+  --input-border-focus: var(--accent-purple);
+
+  /* Shadow & Effects - Light Theme */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(147, 51, 234, 0.2);
+  --shadow-lg: 0 8px 24px rgba(107, 33, 168, 0.1);
+}
+
+/* ==========================================
+   THEME TOGGLE BUTTON STYLES
+   ========================================== */
+
+.theme-toggle-container {
+  position: fixed;
+  top: 90px;
+  right: 2rem;
+  z-index: 999;
+}
+
+.theme-toggle-btn {
+  background: var(--gradient-header);
+  border: 2px solid var(--border-accent);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-2px) rotate(15deg);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--light-purple);
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0) rotate(0deg);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform var(--transition-speed) ease;
+}
+
+.theme-toggle-btn:hover .theme-icon {
+  transform: scale(1.1);
+}
+
+/* Hide/Show icons based on theme */
+.light-theme .sun-icon {
+  display: none;
+}
+
+.light-theme .moon-icon {
+  display: block;
+}
+
+body:not(.light-theme) .sun-icon {
+  display: block;
+}
+
+body:not(.light-theme) .moon-icon {
+  display: none;
+}
+
+/* ==========================================
+   GLOBAL BASE STYLES
+   ========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  min-height: 100vh;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* ==========================================
+   RESPONSIVE THEME TOGGLE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .theme-toggle-container {
+    top: 75px;
+    right: 1rem;
+  }
+
+  .theme-toggle-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .theme-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 430px) {
+  .theme-toggle-container {
+    top: 70px;
+    right: 0.75rem;
+  }
+
+  .theme-toggle-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .theme-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
