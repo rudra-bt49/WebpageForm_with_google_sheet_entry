@@ -3,43 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-
+    <title>Developer Portfolio - Home</title>
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="stylesheet" href="../styles/header-footer.css">
     <link rel="stylesheet" href="../styles/home.css">
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">MyWebsite</div>
-
-            <ul class="nav-links">
-                <li><a href="home.html" class="active">Home</a></li>
-                <li><a href="register.html">Register</a></li>
-
-                <!-- LOGIN / LOGOUT -->
-                <li>
-                    <a href="login.html" id="authLink">Login</a>
-                </li>
-
-                <li><a href="contact.html">Contact Me</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- MAIN SECTION -->
-    <main class="main-content">
-        <h1>Welcome to the Home Page 🎉</h1>
-        <p>
-            This is a simple responsive home page built using
-            <strong>HTML & CSS only</strong>.
-        </p>
-    </main>
-
-    <!-- AUTH SCRIPT -->
-     <script src="../scripts/auth.js"></script>
-    <script src="../scripts/home.js"></script>
+    <div id="navbar-container"></div>
+    <section class="info-grid-section">
+        <div class="info-grid-container">
+            <div class="info-grid">
+                <div class="grid-image-column">
+                    <img src="../assets/software developer.png" alt="Developer workspace" class="info-image">
+                </div>
+                <div class="grid-text-column">
+                    <h2>Hey...This is Rudra Patel</h2>
+                    <p>
+                        As a passionate full-stack developer, I specialize in creating modern, responsive web applications that deliver exceptional user experiences. With expertise in JavaScript, React, Node.js, and modern CSS frameworks, I bring ideas to life through clean, efficient code.
+                    </p>
+                    <p>
+                        My journey in web development started with a curiosity for how things work on the internet. Over the years, I've honed my skills in both frontend and backend technologies, always staying updated with the latest industry trends and best practices.
+                    </p>
+                    <p>
+                        I believe in writing maintainable code, creating intuitive interfaces, and building applications that not only look great but also perform exceptionally well. Every project is an opportunity to learn something new and push the boundaries of what's possible on the web.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. Let's build something amazing together!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="footer-container"></div>
+    
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/theme-toggle.js"></script>
+    <script>
+        fetch('../headers/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+                
+                const navScript = document.createElement('script');
+                navScript.src = '../headers/navbar.js';
+                navScript.onload = function() {
+                    console.log('[v0] Navbar script loaded successfully');
+                };
+                navScript.onerror = function() {
+                    console.error('[v0] Failed to load navbar script');
+                };
+                document.body.appendChild(navScript);
+                
+                const homeScript = document.createElement('script');
+                homeScript.src = '../scripts/home.js';
+                homeScript.onload = function() {
+                    console.log('[v0] Home script loaded successfully');
+                };
+                document.body.appendChild(homeScript);
+            })
+            .catch(error => {
+                console.error('[v0] Error loading navbar:', error);
+            });
+        
+        fetch('../headers/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('[v0] Error loading footer:', error);
+            });
+    </script>
 </body>
 </html>
-

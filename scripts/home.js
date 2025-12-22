@@ -16,3 +16,4 @@ if (isLoggedIn === "true") {
   authLink.textContent = "Login";
   authLink.href = "login.html";
 }
+

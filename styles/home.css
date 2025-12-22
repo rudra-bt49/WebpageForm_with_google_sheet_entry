@@ -1,97 +1,379 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f2f2f2;
-    min-height: 100vh;
-}
-
-header {
-    background-color: #5a0f7c;
-}
-
-.navbar {
-    max-width: 1200px;
-    margin: auto;
-    padding: 15px 20px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    color: #fff;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: background 0.3s;
-}
-
-.nav-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.nav-links a.active {
-    background-color: #ffffff;
-    color: #5a0f7c;
-    font-weight: bold;
-}
-
 .main-content {
-    height: calc(100vh - 70px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  padding-top: 120px;
+  background: radial-gradient(circle at top right, rgba(107, 33, 168, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at bottom left, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+}
+
+.welcome-section {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .main-content h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #333;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.main-content .subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .main-content p {
-    font-size: 18px;
-    color: #555;
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  opacity: 0.9;
 }
 
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--transition-speed) ease;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--text-primary);
+  border: 2px solid var(--btn-primary-bg);
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--light-purple);
+  border: 2px solid var(--btn-secondary-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--light-purple);
+  color: var(--bg-primary);
+}
+
+/* Info Grid Section */
+.info-grid-section {
+  padding: 5rem 2rem;
+  background: var(--gradient-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-grid-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.info-grid-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  background: var(--bg-card);
+  padding: 3rem;
+  margin-top: 75px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-accent);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  transition: background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.grid-image-column {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--border-accent);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  object-fit: cover;
+  aspect-ratio: 5 / 6;
+}
+
+.info-image:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.grid-text-column {
+  padding: 1rem;
+}
+
+.grid-text-column h2 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.3;
+}
+
+.grid-text-column p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+.grid-text-column p:last-child {
+  margin-bottom: 0;
+}
+
+/* RESPONSIVE HOME PAGE */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-    }
+  /* Improved mobile padding and spacing */
+  .main-content {
+    padding: 2rem 1.5rem;
+    padding-top: 90px;
+    min-height: calc(100vh - 100px);
+  }
 
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
+  .welcome-section {
+    max-width: 100%;
+  }
 
-    .main-content h1 {
-        font-size: 26px;
-    }
+  .main-content h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
 
-    .main-content p {
-        font-size: 16px;
-    }
+  .main-content .subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .main-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+    padding: 0.875rem 1.5rem;
+  }
+
+  /* Added responsive grid styles for mobile */
+  .info-grid-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .grid-text-column h2 {
+    font-size: 1.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .grid-text-column p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .info-image {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content h1 {
+    font-size: 3rem;
+  }
+
+  .main-content .subtitle {
+    font-size: 1.35rem;
+  }
+
+  .main-content p {
+    font-size: 1.05rem;
+  }
+
+  /* Added tablet grid styles */
+  .info-grid {
+    gap: 3rem;
+    padding: 2.5rem;
+  }
+
+  .grid-text-column h2 {
+    font-size: 2.25rem;
+  }
+
+  .grid-text-column p {
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 1921px) {
+  .main-content h1 {
+    font-size: 4.5rem;
+  }
+
+  .main-content .subtitle {
+    font-size: 1.75rem;
+  }
+
+  .main-content p {
+    font-size: 1.25rem;
+  }
+
+  /* Added large screen grid styles */
+  .info-grid-container {
+    max-width: 1800px;
+  }
+
+  .info-grid {
+    gap: 5rem;
+    padding: 4rem;
+  }
+
+  .grid-text-column h2 {
+    font-size: 3rem;
+  }
+
+  .grid-text-column p {
+    font-size: 1.25rem;
+    line-height: 2;
+  }
+}
+
+@media (max-width: 430px) {
+  /* Optimized for smaller screens like iPhone 14 Pro Max */
+  .main-content {
+    padding: 1.5rem 1rem;
+    padding-top: 85px;
+  }
+
+  .main-content h1 {
+    font-size: 1.875rem;
+  }
+
+  .main-content .subtitle {
+    font-size: 1rem;
+  }
+
+  .main-content p {
+    font-size: 0.9rem;
+  }
+
+  /* Added extra small screen grid styles */
+  .info-grid-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .info-grid {
+    padding: 1.5rem 1rem;
+    gap: 2rem;
+  }
+
+  .grid-text-column h2 {
+    font-size: 1.625rem;
+  }
+
+  .grid-text-column p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 375px) {
+  /* Extra small screens adjustment */
+  .main-content {
+    padding-top: 80px;
+  }
+
+  .main-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .main-content .subtitle {
+    font-size: 1rem;
+  }
+
+  /* Added 375px grid styles */
+  .info-grid {
+    padding: 1.25rem 0.875rem;
+  }
+
+  .grid-text-column h2 {
+    font-size: 1.5rem;
+  }
+
+  .grid-text-column p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
 }

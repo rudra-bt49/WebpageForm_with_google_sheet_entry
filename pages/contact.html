@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <link rel="stylesheet" href="../styles/form.css">
+  <title>Contact - Developer Portfolio</title>
+  <!-- Added theme.css for theme system -->
+  <link rel="stylesheet" href="../styles/theme.css">
+  <link rel="stylesheet" href="../styles/header-footer.css">
+  <link rel="stylesheet" href="../styles/contact.css">
 </head>
+<body>
 
-<!-- Loader -->
-<div class="loader-overlay" id="loader">
+<div class="loader-overlay" id="loader" style="display: none;">
   <div class="loader"></div>
 </div>
 
-<body>
+<div id="navbar-container"></div>
 
 <form id="contact-form" target="_self" method="post" novalidate>
   <div class="form-container">
@@ -38,10 +40,45 @@
   </div>
 </form>
 
+<div id="footer-container"></div>
+
 <script src="../utils/email_validator.js"></script>
 <script src="../config/config.js"></script>
 <script src="../scripts/loader.js"></script>
 <script src="../scripts/auth.js"></script>
 <script src="../scripts/contact.js"></script>
+<!-- Added theme-toggle.js for dark/light theme functionality -->
+<script src="../scripts/theme-toggle.js"></script>
+
+<script>
+// Load navbar
+fetch("../headers/navbar.html")
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById("navbar-container").innerHTML = data
+
+    const navScript = document.createElement("script")
+    navScript.src = "../headers/navbar.js"
+    document.body.appendChild(navScript)
+
+    const homeScript = document.createElement("script")
+    homeScript.src = "../scripts/home.js"
+    document.body.appendChild(homeScript)
+  })
+  .catch((error) => {
+    console.error("Error loading navbar:", error)
+  })
+
+// Load footer
+fetch("../headers/footer.html")
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById("footer-container").innerHTML = data
+  })
+  .catch((error) => {
+    console.error("Error loading footer:", error)
+  })
+</script>
+
 </body>
 </html>
