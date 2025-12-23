@@ -52,7 +52,6 @@
   overflow: hidden;
 }
 
-/* Added proper grid layout for skills section */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -97,7 +96,6 @@
 .skill-card:hover img {
   transform: scale(1.1);
 }
-/* End of skills grid styles */
 
 .skills-slider-container {
   max-width: 100%;
@@ -197,14 +195,11 @@
   color: var(--accent-purple);
 }
 
-/* Education Section */
 .education-section {
   padding: 5rem 2rem;
   background: var(--bg-primary);
-  /* Removed border-top to eliminate horizontal line above section */
 }
 
-/* Modified grid to fit all 4 cards in a single row */
 .education-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -271,7 +266,6 @@
   font-size: 1rem;
 }
 
-/* Projects Section */
 .projects-section {
   padding: 5rem 2rem;
   background: var(--gradient-card);
@@ -426,7 +420,6 @@
     font-size: 2rem;
   }
 
-  /* Added responsive grid for skills on tablets */
   .skills-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;

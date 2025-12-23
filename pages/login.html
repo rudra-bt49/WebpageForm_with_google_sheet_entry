@@ -6,6 +6,7 @@
   <title>Login Form</title>
   
   <link rel="stylesheet" href="../styles/theme.css">
+  <link rel="stylesheet" href="../styles/header-footer.css">
   <link rel="stylesheet" href="../styles/form.css">
 
   <style>
@@ -20,37 +21,40 @@
 </head>
 <body>
 
-<div class="loader-overlay" id="loader">
-  <div class="loader"></div>
-</div>
-
-<form id="login-form" novalidate>
-  <div class="form-container">
-    <fieldset>
-      <legend>Fill the login form:</legend>
-
-      <label for="username">username :</label>
-      <input type="text" id="username" placeholder="Enter your username" required>
-      <span class="error" id="usernameError"></span>
-
-      <label for="password">password :</label>
-      <input type="password" id="password" placeholder="Enter your password" required>
-      <span class="error" id="passwordError"></span>
-
-      <button type="submit">SignIn</button>
-      <button type="reset">Clear</button>
-
-      <p style="margin-top: 15px;">
-        Don't have an account?
-        <a href="register.html" class="auth-link">Register</a>
-      </p>
-    </fieldset>
+  <div class="loader-overlay" id="loader">
+    <div class="loader"></div>
   </div>
-</form>
 
-<script src="../scripts/loader.js"></script>
-<script src="../scripts/login.js"></script>
-<script src="../scripts/theme-toggle.js"></script>
+  <div id="navbar-container"></div>
+
+  <form id="login-form" novalidate>
+    <div class="form-container">
+      <fieldset>
+        <legend>Fill the login form:</legend>
+
+          <label for="username">username :</label>
+          <input type="text" id="username" placeholder="Enter your username" required>
+          <span class="error" id="usernameError"></span>
+
+          <label for="password">password :</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+          <span class="error" id="passwordError"></span>
+
+          <button type="submit">SignIn</button>
+          <button type="reset">Clear</button>
+
+          <p style="margin-top: 15px;">
+            Don't have an account?
+          <a href="register.html" class="auth-link">Register</a>
+          </p>
+      </fieldset>
+    </div>
+  </form>
+
+  <!-- <div id="footer-container"></div> -->
+
+  <script src="../scripts/loader.js"></script>
+  <script src="../scripts/login.js"></script>
+  <script src="../scripts/theme-toggle.js"></script>
 </body>
 </html>
-

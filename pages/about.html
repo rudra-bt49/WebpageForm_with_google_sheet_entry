@@ -254,8 +254,8 @@
     
     <!-- SCRIPTS -->
     <!-- Moved all inline JavaScript to about.js -->
-    <script src="../scripts/auth.js"></script>
     <!-- Added theme-toggle.js for dark/light theme functionality -->
+     <script src="../scripts/auth.js"></script>
     <script src="../scripts/theme-toggle.js"></script>
     <script src="../scripts/about.js"></script>
     <script>
@@ -263,6 +263,11 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-container').innerHTML = data;
+                
+                // Initialize theme toggle after navbar HTML is injected
+                if (typeof window.initThemeToggle === 'function') {
+                    window.initThemeToggle();
+                }
                 
                 const navScript = document.createElement('script');
                 navScript.src = '../headers/navbar.js';

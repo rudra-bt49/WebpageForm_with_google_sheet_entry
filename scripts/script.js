@@ -160,3 +160,30 @@ async function sendToGoogleSheet() {
     hideLoader();
   }
 }
+
+fetch("../headers/navbar.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("navbar-container").innerHTML = data
+
+      const navScript = document.createElement("script")
+      navScript.src = "../headers/navbar.js"
+      document.body.appendChild(navScript)
+
+      const homeScript = document.createElement("script")
+      homeScript.src = "../scripts/home.js"
+      document.body.appendChild(homeScript)
+    })
+    .catch((error) => {
+      console.error("Error loading navbar:", error)
+    })
+
+  // Load footer
+  fetch("../headers/footer.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("footer-container").innerHTML = data
+    })
+    .catch((error) => {
+      console.error("Error loading footer:", error)
+    })
