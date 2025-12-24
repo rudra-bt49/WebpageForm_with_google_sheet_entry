@@ -115,7 +115,7 @@ body.light-theme {
 }
 
 .theme-toggle-btn:hover {
-  transform: translateY(-2px) rotate(15deg);
+  transform: translate(-2px) rotate(15deg);
   box-shadow: var(--shadow-lg);
   border-color: var(--light-purple);
 }

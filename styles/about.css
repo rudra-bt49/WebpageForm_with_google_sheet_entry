@@ -26,6 +26,7 @@
   font-size: 1.25rem;
   color: var(--text-secondary);
   opacity: 0.9;
+  font-weight: bolder;
 }
 
 .section-container {
